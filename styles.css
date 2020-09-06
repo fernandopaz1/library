@@ -1,20 +1,35 @@
-.center{
+.center {
     margin-left: auto;
     margin-right: auto;
-    display:flex;
-    justify-content: center;
-}
-#buttons{
-    margin: 0 auto;
-    width: 100%;
-    display:flex;
+    display: flex;
     justify-content: center;
 }
 
-#books{
-    border: 1px solid black;
+#buttons {
     margin: 0 auto;
     width: 100%;
-    display:flex;
+    display: flex;
     justify-content: center;
+}
+
+
+#books {
+    border: 1px solid black;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.bookInfo{
+    width: 50%;
+    background-color: cadetblue;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-bottom: 10px;
+    margin-top: 10px ;
+    border-radius: 10px;
 }
