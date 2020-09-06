@@ -24,10 +24,10 @@ function addBookToLibrary() {
     let author = prompt("Introduce the name of the author:");
     let pages = +prompt("Introduce the number of the pages:");
     myLibrary.push(new Book(name, author, pages, false));
-    showBook(myLibrary[0])
+
 }
 
-
+showBook(book1);
 
 function showBook(book) {  
     let title = `<h1  class=${"title"}>${book.title}</h1>`;
@@ -36,15 +36,29 @@ function showBook(book) {
     let hasBeenReaded = book.readed ? "readed" : "not readed";
     let readed = `<h4  class=${"readed"}>${hasBeenReaded}</h4>`;
 
-    let btnDelete = `<button id=${`del${book.title}`}>Delete</button>`
-    let btnReaded = `<button id=${`read${book.title}`}>Readed</button>`
+    let btnDelete = `<button id=${`del${book.title}`} class=${"btnDelete"}>Delete</button>`
+    let btnReaded = `<button id=${`read${book.title}`} class=${"btnReaded"}>Readed</button>`
     let btnContainer = `<div id=${`${book.title}`}>${btnDelete} ${btnReaded}</div>` 
 
     let content = `<div id=${book.title}>${title} ${author} ${pages} ${readed} ${btnContainer}</div>`
 
     bookContainer.innerHTML += content
+    
+    addButton();
 }
 
+
+function addButton(){
+    
+    document.querySelectorAll(".btnDelete").forEach((button)=>{
+        button.addEventListener("click",(e)=>{
+            console.log(`this is the event ${e}`)
+            let elem = e.target;
+            let bookCont=elem.parentNode.parentNode;
+            bookCont.parentNode.removeChild(bookCont);
+        })
+    })
+}
 function removeElement(elem) {
     elem.parentNode.removeChild(elem);
 }
