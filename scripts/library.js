@@ -59,9 +59,9 @@ function showBook(book) {
     let btnRead = book.readed ? "Unread" : "Read";
     let readed = `<h4  class=${"readed"}>${hasBeenReaded}</h4>`;
 
-    let btnDelete = `<button id=${`del${book.title}`} class=${"btnDelete"}>Delete</button>`
-    let btnReaded = `<button id=${`read${book.title}`} class=${"btnReaded"}>${btnRead}</button>`
-    let btnContainer = `<div id=${`${book.title}`} class="btnContainer">${btnDelete} ${btnReaded}</div>`
+    let btnDelete = `<button class=${"btnDelete"}>Delete</button>`
+    let btnReaded = `<button class=${"btnReaded"}>${btnRead}</button>`
+    let btnContainer = `<div class="btnContainer">${btnDelete} ${btnReaded}</div>`
 
     let content = `<div id=${bookId} class="bookInfo">${title} ${author} ${pages} ${readed} ${btnContainer}</div>`
 
