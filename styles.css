@@ -1,3 +1,7 @@
+#body{
+    background-color: lightcoral;
+}
+
 .center {
     margin-left: auto;
     margin-right: auto;
@@ -12,6 +16,13 @@
     justify-content: center;
 }
 
+#addBook{
+    font-weight: bold;
+    border-radius: 5%;
+    width: 20%;
+    height: 50px;
+    margin-bottom: 10px;
+}
 
 #books {
     border: 1px solid black;

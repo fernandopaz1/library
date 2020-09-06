@@ -15,23 +15,37 @@ Book.prototype.info = function () {
 }
 
 let book1 = new Book("The Lord of the Rings: The Fellowship of the Ring", "J. R. R. Tolkien", 9250, true);
-let book2 = new Book("Harry Potter", "J. K. Rowling", 500,false);
+let book2 = new Book("Harry Potter", "J. K. Rowling", 500, false);
 
 
 btnNewBook.addEventListener("click", addBookToLibrary)
+
+myLibrary.push(book1);
+myLibrary.push(book2);
+refreshBooks();
+
 
 function addBookToLibrary() {
     let name = prompt("Introduce the name of the book:");
     let author = prompt("Introduce the name of the author:");
     let pages = +prompt("Introduce the number of the pages:");
-    myLibrary.push(new Book(name, author, pages, false));
-
+    if(name.length>1 && author.length>1 && pages>1){
+        myLibrary.push(new Book(name, author, pages, false));
+        refreshBooks();
+    }else{
+        alert("This book isn't valid")
+    }
 }
 
-showBook(book1);
-showBook(book2);
+
+
+function refreshBooks(){
+    bookContainer.innerHTML="";
+    myLibrary.forEach(book => showBook(book));
+}
 
 function showBook(book) {
+    let bookId = book.title.replace(/ /g, "");
     let title = `<h1  class=${"title"}>${book.title}</h1>`;
     let author = `<h3  class=${"author"}>${book.author}</h3>`;
     let pages = `<h4  class=${"pages"}>${book.pages} pages</h4>`;
@@ -42,7 +56,7 @@ function showBook(book) {
     let btnReaded = `<button id=${`read${book.title}`} class=${"btnReaded"}>Read</button>`
     let btnContainer = `<div id=${`${book.title}`} class="btnContainer">${btnDelete} ${btnReaded}</div>`
 
-    let content = `<div id=${book.title} class="bookInfo">${title} ${author} ${pages} ${readed} ${btnContainer}</div>`
+    let content = `<div id=${bookId} class="bookInfo">${title} ${author} ${pages} ${readed} ${btnContainer}</div>`
 
     bookContainer.innerHTML += content
 
@@ -55,7 +69,7 @@ function addButton() {
         button.addEventListener("click", (e) => {
             let elem = e.target;
             let bookCont = elem.parentNode.parentNode;
-            bookCont.parentNode.removeChild(bookCont);
+            removeBook(bookCont)
         })
     })
     document.querySelectorAll(".btnReaded").forEach((button) => {
@@ -66,6 +80,12 @@ function addButton() {
         })
     })
 }
-function removeElement(elem) {
+
+
+function removeBook(elem){
+    let id= elem.id;
+    myLibrary = myLibrary.filter((current)=>{
+        return current.title.replace(/ /g, "") == id;
+    })
     elem.parentNode.removeChild(elem);
 }
