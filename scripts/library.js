@@ -27,17 +27,24 @@ function addBookToLibrary() {
     showBook(myLibrary[0])
 }
 
-function showBook(book) {
+
+
+function showBook(book) {  
     let title = `<h1  class=${"title"}>${book.title}</h1>`;
     let author = `<h3  class=${"author"}>${book.author}</h3>`;
-    let pages =   `<h4  class=${"pages"}>${book.pages}</h4>`;
+    let pages = `<h4  class=${"pages"}>${book.pages}</h4>`;
     let hasBeenReaded = book.readed ? "readed" : "not readed";
-    let readed =`<h4  class=${"readed"}>${hasBeenReaded}</h4>`;
-    let content = `<div id=${book.title}>${title} ${author} ${pages} ${readed}</div>`
+    let readed = `<h4  class=${"readed"}>${hasBeenReaded}</h4>`;
+
+    let btnDelete = `<button id=${`del${book.title}`}>Delete</button>`
+    let btnReaded = `<button id=${`read${book.title}`}>Readed</button>`
+    let btnContainer = `<div id=${`${book.title}`}>${btnDelete} ${btnReaded}</div>` 
+
+    let content = `<div id=${book.title}>${title} ${author} ${pages} ${readed} ${btnContainer}</div>`
 
     bookContainer.innerHTML += content
 }
 
-function removeElement(elem){
+function removeElement(elem) {
     elem.parentNode.removeChild(elem);
 }
