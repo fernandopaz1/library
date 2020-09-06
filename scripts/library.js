@@ -15,7 +15,7 @@ Book.prototype.info = function () {
 }
 
 let book1 = new Book("Hola", "mundo", 11, true);
-let book2 = new Book("Harry Potter", 500,false);
+let book2 = new Book("Harry Potter", "J. K. Rowling", 500,false);
 
 
 btnNewBook.addEventListener("click", addBookToLibrary)
@@ -40,7 +40,7 @@ function showBook(book) {
 
     let btnDelete = `<button id=${`del${book.title}`} class=${"btnDelete"}>Delete</button>`
     let btnReaded = `<button id=${`read${book.title}`} class=${"btnReaded"}>Readed</button>`
-    let btnContainer = `<div id=${`${book.title}`}>${btnDelete} ${btnReaded}</div>`
+    let btnContainer = `<div id=${`${book.title}`} class="btnContainer">${btnDelete} ${btnReaded}</div>`
 
     let content = `<div id=${book.title} class="bookInfo">${title} ${author} ${pages} ${readed} ${btnContainer}</div>`
 

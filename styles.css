@@ -30,6 +30,17 @@
     flex-direction: column;
     justify-content: center;
     margin-bottom: 10px;
-    margin-top: 10px ;
+    margin-top: 10px;
     border-radius: 10px;
+}
+
+.title, .author, .pages, .readed, .btnContainer{
+    text-align: center;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.title{
+    font-weight: bold;
+    font-style: italic;
 }
