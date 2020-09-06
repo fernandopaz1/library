@@ -14,7 +14,7 @@ Book.prototype.info = function () {
     return `${this.title} by ${this.author}, ${this.pages} pages, ${s}`;
 }
 
-let book1 = new Book("Hola", "mundo", 11, true);
+let book1 = new Book("The Lord of the Rings: The Fellowship of the Ring", "J. R. R. Tolkien", 9250, true);
 let book2 = new Book("Harry Potter", "J. K. Rowling", 500,false);
 
 
@@ -34,12 +34,12 @@ showBook(book2);
 function showBook(book) {
     let title = `<h1  class=${"title"}>${book.title}</h1>`;
     let author = `<h3  class=${"author"}>${book.author}</h3>`;
-    let pages = `<h4  class=${"pages"}>${book.pages}</h4>`;
+    let pages = `<h4  class=${"pages"}>${book.pages} pages</h4>`;
     let hasBeenReaded = book.readed ? "readed" : "not readed";
     let readed = `<h4  class=${"readed"}>${hasBeenReaded}</h4>`;
 
     let btnDelete = `<button id=${`del${book.title}`} class=${"btnDelete"}>Delete</button>`
-    let btnReaded = `<button id=${`read${book.title}`} class=${"btnReaded"}>Readed</button>`
+    let btnReaded = `<button id=${`read${book.title}`} class=${"btnReaded"}>Read</button>`
     let btnContainer = `<div id=${`${book.title}`} class="btnContainer">${btnDelete} ${btnReaded}</div>`
 
     let content = `<div id=${book.title} class="bookInfo">${title} ${author} ${pages} ${readed} ${btnContainer}</div>`
