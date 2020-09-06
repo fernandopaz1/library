@@ -14,33 +14,39 @@ Book.prototype.info = function () {
     return `${this.title} by ${this.author}, ${this.pages} pages, ${s}`;
 }
 
+Book.prototype.changeReadedStatus = function () {
+    this.readed = !this.readed;
+}
+
 let book1 = new Book("The Lord of the Rings: The Fellowship of the Ring", "J. R. R. Tolkien", 9250, true);
 let book2 = new Book("Harry Potter", "J. K. Rowling", 500, false);
-
-
-btnNewBook.addEventListener("click", addBookToLibrary)
 
 myLibrary.push(book1);
 myLibrary.push(book2);
 refreshBooks();
 
 
+btnNewBook.addEventListener("click", addBookToLibrary)
+
+
+
+
 function addBookToLibrary() {
     let name = prompt("Introduce the name of the book:");
     let author = prompt("Introduce the name of the author:");
     let pages = +prompt("Introduce the number of the pages:");
-    if(name.length>1 && author.length>1 && pages>1){
+    if (name.length > 1 && author.length > 1 && pages > 1) {
         myLibrary.push(new Book(name, author, pages, false));
         refreshBooks();
-    }else{
+    } else {
         alert("This book isn't valid")
     }
 }
 
 
 
-function refreshBooks(){
-    bookContainer.innerHTML="";
+function refreshBooks() {
+    bookContainer.innerHTML = "";
     myLibrary.forEach(book => showBook(book));
 }
 
@@ -50,21 +56,22 @@ function showBook(book) {
     let author = `<h3  class=${"author"}>${book.author}</h3>`;
     let pages = `<h4  class=${"pages"}>${book.pages} pages</h4>`;
     let hasBeenReaded = book.readed ? "readed" : "not readed";
+    let btnRead = book.readed ? "Unread" : "Read";
     let readed = `<h4  class=${"readed"}>${hasBeenReaded}</h4>`;
 
     let btnDelete = `<button id=${`del${book.title}`} class=${"btnDelete"}>Delete</button>`
-    let btnReaded = `<button id=${`read${book.title}`} class=${"btnReaded"}>Read</button>`
+    let btnReaded = `<button id=${`read${book.title}`} class=${"btnReaded"}>${btnRead}</button>`
     let btnContainer = `<div id=${`${book.title}`} class="btnContainer">${btnDelete} ${btnReaded}</div>`
 
     let content = `<div id=${bookId} class="bookInfo">${title} ${author} ${pages} ${readed} ${btnContainer}</div>`
 
     bookContainer.innerHTML += content
 
-    addButton();
+    addListenersToButtons();
 }
 
 
-function addButton() {
+function addListenersToButtons() {
     document.querySelectorAll(".btnDelete").forEach((button) => {
         button.addEventListener("click", (e) => {
             let elem = e.target;
@@ -76,16 +83,25 @@ function addButton() {
         button.addEventListener("click", (e) => {
             let elem = e.target;
             let bookCont = elem.parentNode.parentNode;
-            bookCont.parentNode.removeChild(bookCont);
+            read(bookCont);
         })
     })
 }
 
 
-function removeBook(elem){
-    let id= elem.id;
-    myLibrary = myLibrary.filter((current)=>{
-        return current.title.replace(/ /g, "") == id;
+function removeBook(elem) {
+    let id = elem.id;
+    myLibrary = myLibrary.filter((current) => {
+        return current.title.replace(/ /g, "") != id;
     })
     elem.parentNode.removeChild(elem);
+}
+
+function read(elem) {
+    let id = elem.id;
+    myLibrary.forEach((book => {
+        let bookId = book.title.replace(/ /g, "");
+        if (bookId == id) book.changeReadedStatus();
+    }))
+    refreshBooks();
 }

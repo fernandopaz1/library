@@ -1,5 +1,5 @@
-#body{
-    background-color: lightcoral;
+#body {
+    background-color: rgb(200, 253, 255);
 }
 
 .center {
@@ -16,15 +16,19 @@
     justify-content: center;
 }
 
-#addBook{
+#addBook {
+    font-size: 0.975em;
     font-weight: bold;
-    border-radius: 5%;
-    width: 20%;
-    height: 50px;
+    border-radius: 10%;
+    width: 7.975em;
+    height: 4.075em;
+    max-width: 100%;
     margin-bottom: 10px;
 }
 
 #books {
+    border-radius: 20px;
+    min-height: 20px;
     border: 1px solid black;
     margin: 0 auto;
     display: flex;
@@ -32,7 +36,7 @@
     flex-direction: column;
 }
 
-.bookInfo{
+.bookInfo {
     width: 50%;
     background-color: cadetblue;
     margin-left: auto;
@@ -45,18 +49,18 @@
     border-radius: 10px;
 }
 
-.title, .author, .pages, .readed, .btnContainer{
+.title, .author, .pages, .readed, .btnContainer {
     text-align: center;
     margin-bottom: 20px;
     margin-top: 20px;
 }
 
-.title{
+.title {
     font-weight: bold;
     font-style: italic;
 }
 
-.btnDelete, .btnReaded{
+.btnDelete, .btnReaded {
     margin: 5px;
     font-weight: bold;
     font-size: 90%;
@@ -64,4 +68,9 @@
     width: 30%;
     height: 30px;
     border-radius: 10%;
+}
+
+
+.btnDelete {
+    background-color: rgb(236, 32, 32);
 }
